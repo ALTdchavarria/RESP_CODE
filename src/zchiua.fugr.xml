@@ -1,0 +1,548 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_FUGR" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <AREAT>Costo de material solo incluye materia p</AREAT>
+   <INCLUDES>
+    <SOBJ_NAME>LZCHIUATOP</SOBJ_NAME>
+    <SOBJ_NAME>SAPLZCHIUA</SOBJ_NAME>
+   </INCLUDES>
+   <FUNCTIONS>
+    <item>
+     <FUNCNAME>ZCO_MATERIAL_GHS</FUNCNAME>
+     <SHORT_TEXT>Costo de material solo incluye materia prima</SHORT_TEXT>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>MATNR</PARAMETER>
+       <DBFIELD>CSAP_MBOM-MATNR</DBFIELD>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>WERKS</PARAMETER>
+       <DBFIELD>CSAP_MBOM-WERKS</DBFIELD>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>MENGE</PARAMETER>
+       <DBFIELD>STKO-BMENG</DBFIELD>
+       <DEFAULT>1000</DEFAULT>
+       <OPTIONAL>X</OPTIONAL>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>IFRA</PARAMETER>
+       <DEFAULT>&apos; &apos;</DEFAULT>
+       <OPTIONAL>X</OPTIONAL>
+       <TYP>CADKZ</TYP>
+      </RSIMP>
+     </IMPORT>
+     <EXPORT>
+      <RSEXP>
+       <PARAMETER>VERPR</PARAMETER>
+       <TYP>CHAR15</TYP>
+      </RSEXP>
+      <RSEXP>
+       <PARAMETER>PRECIO</PARAMETER>
+       <TYP>CHAR15</TYP>
+      </RSEXP>
+      <RSEXP>
+       <PARAMETER>TOPMTNR</PARAMETER>
+       <DBFIELD>CSTMAT</DBFIELD>
+      </RSEXP>
+      <RSEXP>
+       <PARAMETER>E_MENGE</PARAMETER>
+       <TYP>CHAR10</TYP>
+      </RSEXP>
+     </EXPORT>
+     <TABLES>
+      <RSTBL>
+       <PARAMETER>STPO</PARAMETER>
+       <DBSTRUCT>ZEST_PRGHS</DBSTRUCT>
+       <OPTIONAL>X</OPTIONAL>
+      </RSTBL>
+      <RSTBL>
+       <PARAMETER>T_IFRA</PARAMETER>
+       <DBSTRUCT>ZEST_PRIFRA_COLLECT_MP</DBSTRUCT>
+       <OPTIONAL>X</OPTIONAL>
+      </RSTBL>
+      <RSTBL>
+       <PARAMETER>F_IFRA</PARAMETER>
+       <DBSTRUCT>ZEST_PRIFRA_COLLECT_FAM</DBSTRUCT>
+       <OPTIONAL>X</OPTIONAL>
+      </RSTBL>
+      <RSTBL>
+       <PARAMETER>T_NLIS</PARAMETER>
+       <DBSTRUCT>ZEST_PRIFRA_COLLECT_MP</DBSTRUCT>
+       <OPTIONAL>X</OPTIONAL>
+      </RSTBL>
+      <RSTBL>
+       <PARAMETER>T_PROH</PARAMETER>
+       <DBSTRUCT>ZEST_PRIFRA_COLLECT_MP</DBSTRUCT>
+       <OPTIONAL>X</OPTIONAL>
+      </RSTBL>
+      <RSTBL>
+       <PARAMETER>STPO_GHS</PARAMETER>
+       <DBSTRUCT>ZEST_PRGHS</DBSTRUCT>
+       <OPTIONAL>X</OPTIONAL>
+      </RSTBL>
+     </TABLES>
+     <EXCEPTION>
+      <RSEXC>
+       <EXCEPTION>ERROR</EXCEPTION>
+      </RSEXC>
+     </EXCEPTION>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>MATNR</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Número de material</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>WERKS</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Centro</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>MENGE</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Cantidad de componente (BTCI)</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IFRA</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Busca familia IFRA</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>VERPR</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Precio medio variable/Precio interno periódico</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>PRECIO</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Precio (BTCI)</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>TOPMTNR</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Output del material inicial en la explosión de listas-mat.</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>E_MENGE</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Cantidad base p/calculo precio Unitario</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>STPO</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Estructura para función de cálculo GHS</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>T_IFRA</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Estructura para función de precio e IFRA</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>F_IFRA</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Estructura para función de precio e IFRA</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>T_NLIS</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Estructura para función de precio e IFRA</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>T_PROH</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Estructura para función de precio e IFRA</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>STPO_GHS</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Estructura para función de cálculo GHS</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>ERROR</PARAMETER>
+       <KIND>X</KIND>
+       <STEXT>No se encontró material</STEXT>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+    <item>
+     <FUNCNAME>ZCO_MATERIAL_GHS_01</FUNCNAME>
+     <SHORT_TEXT>Costo de material solo incluye materia prima</SHORT_TEXT>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>MATNR</PARAMETER>
+       <DBFIELD>CSAP_MBOM-MATNR</DBFIELD>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>WERKS</PARAMETER>
+       <DBFIELD>CSAP_MBOM-WERKS</DBFIELD>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>MENGE</PARAMETER>
+       <DBFIELD>STKO-BMENG</DBFIELD>
+       <DEFAULT>1000</DEFAULT>
+       <OPTIONAL>X</OPTIONAL>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>IFRA</PARAMETER>
+       <DEFAULT>&apos; &apos;</DEFAULT>
+       <OPTIONAL>X</OPTIONAL>
+       <TYP>CADKZ</TYP>
+      </RSIMP>
+     </IMPORT>
+     <EXPORT>
+      <RSEXP>
+       <PARAMETER>VERPR</PARAMETER>
+       <TYP>CHAR15</TYP>
+      </RSEXP>
+      <RSEXP>
+       <PARAMETER>PRECIO</PARAMETER>
+       <TYP>CHAR15</TYP>
+      </RSEXP>
+      <RSEXP>
+       <PARAMETER>TOPMTNR</PARAMETER>
+       <DBFIELD>CSTMAT</DBFIELD>
+      </RSEXP>
+      <RSEXP>
+       <PARAMETER>E_MENGE</PARAMETER>
+       <TYP>CHAR10</TYP>
+      </RSEXP>
+      <RSEXP>
+       <PARAMETER>E_MENGE_GHS</PARAMETER>
+       <TYP>CS_E_MNGLG</TYP>
+      </RSEXP>
+     </EXPORT>
+     <TABLES>
+      <RSTBL>
+       <PARAMETER>STPO</PARAMETER>
+       <DBSTRUCT>ZEST_PRGHS</DBSTRUCT>
+       <OPTIONAL>X</OPTIONAL>
+      </RSTBL>
+      <RSTBL>
+       <PARAMETER>T_IFRA</PARAMETER>
+       <DBSTRUCT>ZEST_PRIFRA_COLLECT_MP</DBSTRUCT>
+       <OPTIONAL>X</OPTIONAL>
+      </RSTBL>
+      <RSTBL>
+       <PARAMETER>F_IFRA</PARAMETER>
+       <DBSTRUCT>ZEST_PRIFRA_COLLECT_FAM</DBSTRUCT>
+       <OPTIONAL>X</OPTIONAL>
+      </RSTBL>
+      <RSTBL>
+       <PARAMETER>T_NLIS</PARAMETER>
+       <DBSTRUCT>ZEST_PRIFRA_COLLECT_MP</DBSTRUCT>
+       <OPTIONAL>X</OPTIONAL>
+      </RSTBL>
+      <RSTBL>
+       <PARAMETER>T_PROH</PARAMETER>
+       <DBSTRUCT>ZEST_PRIFRA_COLLECT_MP</DBSTRUCT>
+       <OPTIONAL>X</OPTIONAL>
+      </RSTBL>
+      <RSTBL>
+       <PARAMETER>STPO_GHS</PARAMETER>
+       <DBSTRUCT>ZEST_PRGHS</DBSTRUCT>
+       <OPTIONAL>X</OPTIONAL>
+      </RSTBL>
+      <RSTBL>
+       <PARAMETER>T_TOT_GHS</PARAMETER>
+       <DBSTRUCT>ZEST_PRGHS</DBSTRUCT>
+       <OPTIONAL>X</OPTIONAL>
+      </RSTBL>
+     </TABLES>
+     <EXCEPTION>
+      <RSEXC>
+       <EXCEPTION>ERROR</EXCEPTION>
+      </RSEXC>
+     </EXCEPTION>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>MATNR</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Número de material</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>WERKS</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Centro</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>MENGE</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Cantidad de componente (BTCI)</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IFRA</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Busca familia IFRA</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>VERPR</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Precio medio variable/Precio interno periódico</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>PRECIO</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Precio (BTCI)</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>TOPMTNR</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Output del material inicial en la explosión de listas-mat.</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>E_MENGE</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Cantidad base p/calculo precio Unitario</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>E_MENGE_GHS</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Cantidad componente calculada en unidad medida base</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>STPO</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Estructura API posición lista materiales: Todos los campos</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>T_IFRA</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Sumatoria IFRA por material</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>F_IFRA</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Sumatoria por familia IFRA</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>T_NLIS</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Materail no listado</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>T_PROH</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Estructura para función de precio e IFRA</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>STPO_GHS</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Estructura para función de cálculo GHS</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>T_TOT_GHS</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Estructura para función de cálculo GHS</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>ERROR</PARAMETER>
+       <KIND>X</KIND>
+       <STEXT>No se encontró material</STEXT>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+    <item>
+     <FUNCNAME>ZCO_MATERIAL_MATPRIM</FUNCNAME>
+     <REMOTE_CALL>R</REMOTE_CALL>
+     <SHORT_TEXT>Costo de material solo incluye materia prima</SHORT_TEXT>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>MATNR</PARAMETER>
+       <DBFIELD>CSAP_MBOM-MATNR</DBFIELD>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>WERKS</PARAMETER>
+       <DBFIELD>CSAP_MBOM-WERKS</DBFIELD>
+       <OPTIONAL>X</OPTIONAL>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>MENGE</PARAMETER>
+       <DBFIELD>STKO-BMENG</DBFIELD>
+       <DEFAULT>1000</DEFAULT>
+       <OPTIONAL>X</OPTIONAL>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>IFRA</PARAMETER>
+       <DEFAULT>&apos; &apos;</DEFAULT>
+       <OPTIONAL>X</OPTIONAL>
+       <TYP>CADKZ</TYP>
+      </RSIMP>
+     </IMPORT>
+     <EXPORT>
+      <RSEXP>
+       <PARAMETER>VERPR</PARAMETER>
+       <TYP>CHAR15</TYP>
+      </RSEXP>
+      <RSEXP>
+       <PARAMETER>PRECIO</PARAMETER>
+       <TYP>CHAR15</TYP>
+      </RSEXP>
+      <RSEXP>
+       <PARAMETER>TOPMTNR</PARAMETER>
+       <DBFIELD>CSTMAT</DBFIELD>
+      </RSEXP>
+      <RSEXP>
+       <PARAMETER>E_MENGE</PARAMETER>
+       <TYP>CHAR10</TYP>
+      </RSEXP>
+     </EXPORT>
+     <TABLES>
+      <RSTBL>
+       <PARAMETER>STPO</PARAMETER>
+       <DBSTRUCT>ZEST_PRIFRA</DBSTRUCT>
+       <OPTIONAL>X</OPTIONAL>
+      </RSTBL>
+      <RSTBL>
+       <PARAMETER>T_IFRA</PARAMETER>
+       <DBSTRUCT>ZEST_PRIFRA_COLLECT_MP</DBSTRUCT>
+       <OPTIONAL>X</OPTIONAL>
+      </RSTBL>
+      <RSTBL>
+       <PARAMETER>F_IFRA</PARAMETER>
+       <DBSTRUCT>ZEST_PRIFRA_COLLECT_FAM</DBSTRUCT>
+       <OPTIONAL>X</OPTIONAL>
+      </RSTBL>
+      <RSTBL>
+       <PARAMETER>T_NLIS</PARAMETER>
+       <DBSTRUCT>ZEST_PRIFRA_COLLECT_MP</DBSTRUCT>
+       <OPTIONAL>X</OPTIONAL>
+      </RSTBL>
+      <RSTBL>
+       <PARAMETER>T_PROH</PARAMETER>
+       <DBSTRUCT>ZEST_PRIFRA_COLLECT_MP</DBSTRUCT>
+       <OPTIONAL>X</OPTIONAL>
+      </RSTBL>
+     </TABLES>
+     <EXCEPTION>
+      <RSEXC>
+       <EXCEPTION>ERROR</EXCEPTION>
+      </RSEXC>
+     </EXCEPTION>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>MATNR</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Número de material</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>WERKS</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Centro</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>MENGE</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Cantidad de componente (BTCI)</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IFRA</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Busca familia IFRA</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>VERPR</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Precio medio variable/Precio interno periódico</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>PRECIO</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Precio (BTCI)</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>TOPMTNR</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Output del material inicial en la explosión de listas-mat.</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>E_MENGE</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Cantidad base p/calculo precio Unitario</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>STPO</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Estructura API posición lista materiales: Todos los campos</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>T_IFRA</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Sumatoria IFRA por material</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>F_IFRA</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Sumatoria por familia IFRA</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>T_NLIS</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Materail no listado</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>T_PROH</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Estructura para función de precio e IFRA</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>ERROR</PARAMETER>
+       <KIND>X</KIND>
+       <STEXT>No se encontró material</STEXT>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+    <item>
+     <FUNCNAME>ZMM_MATERIAL_CRITICO</FUNCNAME>
+     <SHORT_TEXT>Costo de material solo incluye materia prima</SHORT_TEXT>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>MATNR</PARAMETER>
+       <DBFIELD>CSAP_MBOM-MATNR</DBFIELD>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>WERKS</PARAMETER>
+       <DBFIELD>CSAP_MBOM-WERKS</DBFIELD>
+       <OPTIONAL>X</OPTIONAL>
+      </RSIMP>
+     </IMPORT>
+     <TABLES>
+      <RSTBL>
+       <PARAMETER>T_PROH</PARAMETER>
+       <DBSTRUCT>ZEST_PRIFRA_COLLECT_MP</DBSTRUCT>
+       <OPTIONAL>X</OPTIONAL>
+      </RSTBL>
+     </TABLES>
+     <EXCEPTION>
+      <RSEXC>
+       <EXCEPTION>ERROR</EXCEPTION>
+      </RSEXC>
+     </EXCEPTION>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>MATNR</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Número de material</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>WERKS</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Centro</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>T_PROH</PARAMETER>
+       <KIND>P</KIND>
+       <STEXT>Estructura para función de precio e IFRA</STEXT>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>ERROR</PARAMETER>
+       <KIND>X</KIND>
+       <STEXT>No se encontró material</STEXT>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+   </FUNCTIONS>
+  </asx:values>
+ </asx:abap>
+</abapGit>
