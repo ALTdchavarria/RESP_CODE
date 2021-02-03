@@ -1,0 +1,4 @@
+@EndUserText.label: 'Datos Factura'
+define service ZUI_C_DATA_FAC {
+  expose ZC_DATA_FAC as ZCDATAFAC;
+}
